@@ -1,0 +1,11 @@
+:root {
+  --color-primary: #1e40af;
+  --color-secondary: #0f172a;
+  --color-background: #f8fafc;
+  --color-surface: #ffffff;
+  --color-text: #1e293b;
+  --color-muted: #64748b;
+
+  --sidebar-width: 260px;
+  --header-height: 64px;
+}
