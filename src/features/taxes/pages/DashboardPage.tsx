@@ -1,24 +1,12 @@
-import { useEffect, useState } from "react";
-
-import { companyService } from "../../../mocks/services/companyService.mock";
-import { countryService } from "../../../mocks/services/countryService.mock";
-import { taxService } from "../../../mocks/services/taxService.mock";
-
 import { Card } from "../../../components/ui/Card";
 import { Loading } from "../../../components/ui/Loading";
+import { useTaxesSummary } from "../../../hooks/useTaxesSummary";
+import { formatCurrency } from "../../../utils/currencyFormatter";
 
 export function DashboardPage() {
-  const [companies, setCompanies] = useState<number | null>(null);
-  const [countries, setCountries] = useState<number | null>(null);
-  const [taxes, setTaxes] = useState<number | null>(null);
+  const summary = useTaxesSummary();
 
-  useEffect(() => {
-    companyService.getAll().then((data) => setCompanies(data.length));
-    countryService.getAll().then((data) => setCountries(data.length));
-    taxService.getAll().then((data) => setTaxes(data.length));
-  }, []);
-
-  if (companies === null || countries === null || taxes === null) {
+  if (!summary) {
     return <Loading />;
   }
 
@@ -27,9 +15,17 @@ export function DashboardPage() {
       <h2>Dashboard</h2>
 
       <div style={{ display: "flex", gap: "16px", marginTop: "24px" }}>
-        <Card title="Empresas">{companies}</Card>
-        <Card title="Países">{countries}</Card>
-        <Card title="Impostos">{taxes}</Card>
+        <Card title="Empresas">
+          {summary.totalCompanies}
+        </Card>
+
+        <Card title="Países">
+          {summary.totalCountries}
+        </Card>
+
+        <Card title="Impostos Estimados">
+          {formatCurrency(summary.estimatedTaxes)}
+        </Card>
       </div>
     </>
   );
