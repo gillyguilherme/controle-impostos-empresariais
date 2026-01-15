@@ -1,16 +1,12 @@
 import "./styles/variables.css";
 import "./styles/global.css";
 import "./styles/layout.css";
+import "./styles/ui.css";
 
-import { MainLayout } from "./components/layout/MainLayout";
-import { DashboardPage } from "./features/taxes/pages/DashboardPage";
+import { AppRoutes } from "./routes/AppRoutes";
 
 function App() {
-  return (
-    <MainLayout>
-      <DashboardPage />
-    </MainLayout>
-  );
+  return <AppRoutes />;
 }
 
 export default App;
