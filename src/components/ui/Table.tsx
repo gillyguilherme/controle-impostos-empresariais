@@ -1,22 +1,37 @@
-import type { ReactNode } from "react";
+export type Column<T> = {
+  label: string;
+  accessor: keyof T;
+};
 
-interface TableProps {
-  headers: string[];
-  children: ReactNode;
-}
+export type TableProps<T> = {
+  columns: readonly Column<T>[];
+  data: readonly T[];
+};
 
-export function Table({ headers, children }: TableProps) {
+export function Table<T extends Record<string, unknown>>(
+  { columns, data }: TableProps<T>
+) {
   return (
-    <table className="table">
+    <table className="erp-table">
       <thead>
         <tr>
-          {headers.map((header) => (
-            <th key={header}>{header}</th>
+          {columns.map(col => (
+            <th key={String(col.accessor)}>{col.label}</th>
           ))}
         </tr>
       </thead>
 
-      <tbody>{children}</tbody>
+      <tbody>
+        {data.map((row, i) => (
+          <tr key={i}>
+            {columns.map(col => (
+              <td key={String(col.accessor)}>
+                {String(row[col.accessor])}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 }

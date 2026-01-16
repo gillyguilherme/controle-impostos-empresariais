@@ -1,26 +1,50 @@
-.card {
-  background-color: var(--color-surface);
+/* CARDS */
+.stat-card {
+  background: var(--color-surface);
   border-radius: 10px;
-  padding: 20px;
-  border: 1px solid #e5e7eb;
-  min-width: 160px;
+  padding: 16px;
+  border-left: 4px solid var(--color-primary);
 }
 
-.card-title {
-  font-size: 13px;
-  color: var(--color-muted);
-  margin-bottom: 8px;
+.stat-card .card-title {
   text-transform: uppercase;
+  font-size: 12px;
+  color: var(--color-muted);
 }
 
-.card-value {
-  font-size: 26px;
-  font-weight: 600;
+.stat-card .card-value {
+  margin-top: 8px;
+  font-size: 22px;
+  font-weight: 700;
   color: var(--color-text);
 }
 
-.loading {
-  padding: 24px;
-  text-align: center;
-  color: var(--color-muted);
+/* GRID */
+.grid-cards.large {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+/* CHARTS */
+.charts-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.chart-card {
+  background: var(--color-surface);
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+/* TABELAS */
+.erp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
 }
